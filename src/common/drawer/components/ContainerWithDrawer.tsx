@@ -15,7 +15,7 @@ export interface Props {
   className?: string;
   anchor: Anchor;
   children: ReactNode;
-  Content: ComponentType;
+  DrawerContent: ComponentType;
   /**
    * Size in pixels, width or height
    */
@@ -74,11 +74,11 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme: Theme) =>
   }),
 );
 
-export default function Drawer({ anchor, children, className, Content, DrawerProps = {}, size, ToggleButton, variant, initiallyOpened = false }: Props) {
+export function ContainerWithDrawer({ anchor, children, className, DrawerContent, DrawerProps = {}, size, ToggleButton, variant, initiallyOpened = false }: Props) {
   const classes = useStyles({ anchor, size, variant });
   const [isVisible, setIsVisible] = React.useState(false);
   // Mui Drawer does not smoothly cooperate with Toggle button in scope of synchronized animation
-  const DrawerComponent = variant === 'temporary' ? MuiDrawer : SimpleDrawer;
+  const Drawer = variant === 'temporary' ? MuiDrawer : SimpleDrawer;
   const context: ContextProps = {
     toggle: () => setIsVisible(val => !val),
     hide: () => setIsVisible(false),
@@ -90,7 +90,7 @@ export default function Drawer({ anchor, children, className, Content, DrawerPro
   return (
     <div className={clsx(classes.root, className)}>
       <DrawerContext.Provider value={context}>
-        <DrawerComponent
+        <Drawer
           className={clsx((variant === 'permanent' || isVisible) && classes.drawerOpened, DrawerProps.className)}
           variant={variant}
           anchor={anchor}
@@ -104,8 +104,8 @@ export default function Drawer({ anchor, children, className, Content, DrawerPro
             <DrawerHeader setOpen={setIsVisible} anchor={anchor}/>
             <Divider />
           </>}
-          <Content/>
-        </DrawerComponent>
+          <DrawerContent/>
+        </Drawer>
       </DrawerContext.Provider>
       <div
         className={classes.content}

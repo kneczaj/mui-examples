@@ -1,4 +1,4 @@
-import Drawer from "./common/drawer/components/Drawer";
+import {ContainerWithDrawer} from "./common/drawer/components/ContainerWithDrawer";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
 import {Menu} from "./common/drawer/components/Menu";
@@ -23,9 +23,9 @@ export function App() {
   return (
     <>
       <CssBaseline />
-      <Drawer
+      <ContainerWithDrawer
         anchor={'right'}
-        Content={Menu}
+        DrawerContent={Menu}
         size={240}
         className={classes.drawer}
         ToggleButton={ToggleButton}
@@ -56,7 +56,7 @@ export function App() {
             accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
           </Typography>
         </main>
-      </Drawer>
+      </ContainerWithDrawer>
     </>
   )
 }
