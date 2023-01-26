@@ -7,7 +7,7 @@ import {Theme as DefaultTheme} from "@material-ui/core/styles/createTheme";
 import {Property} from 'csstype'
 import {CreateCSSProperties} from "@material-ui/styles/withStyles/withStyles";
 import {DrawerHeader} from "./DrawerHeader";
-import {Anchor, ByAnchor, ByOrientation, toOrientation, ToggleButtonProps} from '../models';
+import {Anchor, ByAnchor, ByOrientation, toOrientation, ToggleButtonProps, getFlexDirection} from '../models';
 import {SimpleDrawer} from "./SimpleDrawer";
 import {ContextProps, DrawerContext} from '../hooks/useDrawer';
 
@@ -36,15 +36,7 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme: Theme) =>
   ({
     root: ({ anchor }: StylesProps) => ({
       display: 'flex',
-      flexDirection: (() => {
-        const byAnchor: ByAnchor<Property.FlexDirection> = {
-          left: "row",
-          right: 'row-reverse',
-          top: 'column',
-          bottom: 'column-reverse'
-        };
-        return byAnchor[anchor];
-      })(),
+      flexDirection: getFlexDirection(anchor)
     }),
     drawerOpened: ({ size }: StylesProps) => ({
       flexBasis: size,
@@ -57,9 +49,28 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme: Theme) =>
       }
       return byOrientation[toOrientation(anchor)];
     },
-    content: {
+    content: ({ anchor }: StylesProps) => ({
       flexGrow: 1,
-    },
+      position: 'relative',
+      flexDirection: getFlexDirection(anchor)
+    }),
+    toggleContainer: ({ anchor }: StylesProps) => ({
+      position: 'absolute',
+      [anchor]: 0,
+      ...(() => {
+        const byOrientation: ByOrientation<CreateCSSProperties<StylesProps>> = {
+          vertical: {
+            left: '50%',
+            transform: 'translate(-50%, 0)',
+          },
+          horizontal: {
+            top: '50%',
+            transform: 'translate(0, -50%)',
+          },
+        }
+        return byOrientation[toOrientation(anchor)];
+      })()
+    })
   }),
 );
 
@@ -74,6 +85,7 @@ export default function Drawer({ anchor, children, className, Content, DrawerPro
     show: () => setIsVisible(true),
     isVisible
   };
+  const showToggleButton = (variant === 'persistent' || variant === 'temporary') && ToggleButton;
 
   return (
     <div className={clsx(classes.root, className)}>
@@ -94,15 +106,19 @@ export default function Drawer({ anchor, children, className, Content, DrawerPro
           </>}
           <Content/>
         </DrawerComponent>
-        {(variant === 'persistent' || variant === 'temporary') && ToggleButton && <ToggleButton
-          aria-label="open drawer"
-          onClick={() => setIsVisible(isOpened => !isOpened)}
-        />}
       </DrawerContext.Provider>
       <div
         className={classes.content}
       >
         {children}
+        {showToggleButton &&
+          <div className={classes.toggleContainer}>
+            <ToggleButton
+              aria-label="open drawer"
+              onClick={() => setIsVisible(isOpened => !isOpened)}
+            />
+          </div>
+        }
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   main: {
     backgroundColor: 'green',
     padding: theme.spacing(3),
-    overflow: 'auto'
+    height: '100%'
   }
 }))
 
@@ -24,7 +24,7 @@ export function App() {
     <>
       <CssBaseline />
       <Drawer
-        anchor={'bottom'}
+        anchor={'right'}
         Content={Menu}
         size={240}
         className={classes.drawer}
