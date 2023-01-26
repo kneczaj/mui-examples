@@ -3,7 +3,7 @@ import React, {ComponentType} from "react";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import {makeStyles} from "@material-ui/core";
-import {Anchor, ByAnchor} from "../models";
+import {ByAnchor} from "../models";
 import {Theme as DefaultTheme} from "@material-ui/core/styles/createTheme";
 import clsx from "clsx";
 import Typography from "@material-ui/core/Typography";

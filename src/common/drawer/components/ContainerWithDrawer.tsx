@@ -2,12 +2,9 @@ import React, {ComponentType, ReactNode} from 'react';
 import clsx from 'clsx';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 import MuiDrawer, {DrawerProps as MuiDrawerProps} from '@material-ui/core/Drawer';
-import Divider from '@material-ui/core/Divider';
 import {Theme as DefaultTheme} from "@material-ui/core/styles/createTheme";
-import {Property} from 'csstype'
 import {CreateCSSProperties} from "@material-ui/styles/withStyles/withStyles";
-import {DrawerHeader} from "./DrawerHeader";
-import {Anchor, ByAnchor, ByOrientation, toOrientation, ToggleButtonProps, getFlexDirection} from '../models';
+import {Anchor, ByOrientation, toOrientation, ToggleButtonProps, getFlexDirection} from '../models';
 import {SimpleDrawer} from "./SimpleDrawer";
 import {ContextProps, DrawerContext} from '../hooks/useDrawer';
 
