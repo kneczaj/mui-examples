@@ -49,11 +49,16 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme: Theme) =>
       }
       return byOrientation[toOrientation(anchor)];
     },
-    content: ({ anchor }: StylesProps) => ({
-      flexGrow: 1,
+    contentContainer: ({ anchor }: StylesProps) => ({
+      flex: 1,
       position: 'relative',
-      flexDirection: getFlexDirection(anchor)
+      flexDirection: getFlexDirection(anchor),
+      overflow: 'auto'
     }),
+    content: {
+      height: '100%',
+      overflow: 'auto'
+    },
     toggleContainer: ({ anchor }: StylesProps) => ({
       position: 'absolute',
       [anchor]: 0,
@@ -108,9 +113,11 @@ export function ContainerWithDrawer({ anchor, children, className, DrawerContent
         </Drawer>
       </DrawerContext.Provider>
       <div
-        className={classes.content}
+        className={classes.contentContainer}
       >
-        {children}
+        <div className={classes.content}>
+          {children}
+        </div>
         {showToggleButton &&
           <div className={classes.toggleContainer}>
             <ToggleButton
