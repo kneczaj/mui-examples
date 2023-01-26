@@ -88,7 +88,9 @@ export function ContainerWithDrawer({ anchor, children, className, DrawerContent
     toggle: () => setIsVisible(val => !val),
     hide: () => setIsVisible(false),
     show: () => setIsVisible(true),
-    isVisible
+    isVisible,
+    variant,
+    anchor
   };
   const showToggleButton = (variant === 'persistent' || variant === 'temporary') && ToggleButton;
 
@@ -105,10 +107,6 @@ export function ContainerWithDrawer({ anchor, children, className, DrawerContent
             ...(DrawerProps.classes || {})
           }}
         >
-          {variant !== 'permanent' && <>
-            <DrawerHeader setOpen={setIsVisible} anchor={anchor}/>
-            <Divider />
-          </>}
           <DrawerContent/>
         </Drawer>
       </DrawerContext.Provider>

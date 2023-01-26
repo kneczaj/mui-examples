@@ -5,6 +5,8 @@ import {Menu} from "./common/drawer/components/Menu";
 import {makeStyles} from "@material-ui/core";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import {ToggleButton} from "./common/drawer/components/ToggleButton";
+import {DrawerHeader} from "./common/drawer/components/DrawerHeader";
+import Divider from "@material-ui/core/Divider";
 
 const useStyles = makeStyles((theme) => ({
   drawer: {
@@ -23,8 +25,14 @@ export function App() {
     <>
       <CssBaseline />
       <ContainerWithDrawer
-        anchor={'bottom'}
-        DrawerContent={Menu}
+        anchor={'left'}
+        DrawerContent={() => (
+          <>
+            <DrawerHeader />
+            <Divider />
+            <Menu />
+          </>
+        )}
         size={240}
         className={classes.drawer}
         ToggleButton={ToggleButton}
