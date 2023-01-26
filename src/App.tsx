@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   main: {
+    backgroundColor: 'green',
     padding: theme.spacing(3),
+    overflow: 'auto'
   }
 }))
 
