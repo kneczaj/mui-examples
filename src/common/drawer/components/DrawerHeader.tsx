@@ -3,7 +3,6 @@ import React, {ComponentType} from "react";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import {makeStyles} from "@material-ui/core";
-import {CSSProperties} from "@material-ui/styles/withStyles/withStyles";
 import {Anchor, ByAnchor} from "../models";
 import {Theme as DefaultTheme} from "@material-ui/core/styles/createTheme";
 import clsx from "clsx";
@@ -15,12 +14,8 @@ export interface Props {
   title?: string;
 }
 
-interface StylesProps {
-  anchor: Anchor;
-}
-
-const useStyles = makeStyles<DefaultTheme, StylesProps>((theme) => ({
-  root: ({ anchor }) => ({
+const useStyles = makeStyles<DefaultTheme>((theme) => ({
+  root: {
     display: 'flex',
     alignItems: 'center',
     padding: theme.spacing(0, 1),
@@ -28,7 +23,7 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme) => ({
     flexDirection: "row",
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
-  }),
+  },
   hidden: {
     visibility: 'hidden'
   }
@@ -43,7 +38,7 @@ const CloseIconByAnchor: ByAnchor<ComponentType> = {
 
 export function DrawerHeader({ className, title }: Props) {
   const { anchor, hide, variant } = useDrawer();
-  const classes = useStyles({ anchor });
+  const classes = useStyles();
   const CloseIcon = CloseIconByAnchor[anchor];
   const hideCloseButton = variant === 'permanent';
   if (!title && hideCloseButton) {
