@@ -6,7 +6,7 @@
     "@types/react-dom": "latest",
     "clsx": "latest",
     "react": "latest",
-    "react-component-testing-library-client": "file:react-component-testing-library-client.tgz",
+    "react-component-testing-library-client": "file:/home/kamil/repos/mui-examples/scripts/../react-component-testing-library-client-1.2.5.tgz",
     "react-dom": "latest",
     "typescript": "latest"
   },
@@ -17,7 +17,8 @@
   "main": "index.tsx",
   "scripts": {
     "start": "react-scripts start",
-    "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh"
+    "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh",
+    "testgen:template": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template"
   },
   "title": "Material demo",
   "browserslist": {

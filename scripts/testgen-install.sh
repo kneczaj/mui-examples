@@ -1,7 +1,10 @@
 #/usr/bin/bash
-PACKAGE_FILENAME=react-component-testing-library-client.tgz
-rm ${PACKAGE_FILENAME}
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+WORKDIR=${SCRIPT_DIR}/..
+PACKAGE=react-component-testing-library-client
+rm ${WORKDIR}/${PACKAGE}*.tgz
+yarn remove react-component-testing-library-client
 set -e
-wget -O ${PACKAGE_FILENAME} ${TG_SERVER_URL}/package
+wget --content-disposition ${TG_SERVER_URL}/package
+PACKAGE_FILENAME=$(ls ${WORKDIR}/${PACKAGE}*.tgz)
 yarn add file:${PACKAGE_FILENAME}
-npm install -g ${PACKAGE_FILENAME}

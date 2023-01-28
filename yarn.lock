@@ -7684,9 +7684,9 @@ react-app-polyfill@^3.0.0:
     regenerator-runtime "^0.13.9"
     whatwg-fetch "^3.6.2"
 
-"react-component-testing-library-client@file:react-component-testing-library-client.tgz":
-  version "1.2.2"
-  resolved "file:react-component-testing-library-client.tgz#beda954552cd29022be3b82fdc2af23f58ff7c56"
+"react-component-testing-library-client@file:/home/kamil/repos/drawer/scripts/../react-component-testing-library-client-1.2.5.tgz":
+  version "1.2.5"
+  resolved "file:/home/kamil/repos/mui-examples/scripts/../react-component-testing-library-client-1.2.5.tgz#e66fe296967f7e511e5db03a9ecae5926514cda5"
   dependencies:
     "@types/tough-cookie" "^4.0.2"
     async "^3.2.0"

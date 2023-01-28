@@ -1,0 +1,10 @@
+{
+  "projectDir": "src",
+  "template": {
+    "ignoredHooks":  ["useStyles"]
+  },
+  "mocks": {
+    "mocksFile": "src/test/mocks.ts",
+    "hooksFile": "src/test/hooks.ts"
+  }
+}
