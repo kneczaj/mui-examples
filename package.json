@@ -6,6 +6,7 @@
     "@types/react-dom": "latest",
     "clsx": "latest",
     "react": "latest",
+    "react-component-testing-library-client": "file:react-component-testing-library-client.tgz",
     "react-dom": "latest",
     "typescript": "latest"
   },
@@ -15,7 +16,8 @@
   },
   "main": "index.tsx",
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh"
   },
   "title": "Material demo",
   "browserslist": {
