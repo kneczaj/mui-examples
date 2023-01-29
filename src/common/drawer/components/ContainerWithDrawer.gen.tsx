@@ -1,13 +1,14 @@
 import { fireEvent, RenderResult } from '@testing-library/react';
 import { generate } from 'react-component-testing-library-client/lib/commands';
 import { ContainerWithDrawer, Props as ContainerWithDrawerProps } from './ContainerWithDrawer';
-import {DrawerHeader} from "src/common/drawer/components/DrawerHeader";
+import {DrawerHeader} from "common/drawer/components/DrawerHeader";
 import Divider from "@material-ui/core/Divider";
-import {Menu} from "src/common/drawer/components/Menu";
-import {ToggleButton} from "src/common/drawer/components/ToggleButton";
+import {Menu} from "common/drawer/components/Menu";
+import {ToggleButton} from "common/drawer/components/ToggleButton";
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import {getAnyComponentMock} from "src/test/components";
+import {getAnyComponentMock} from "test/components";
+
 
 const ChildrenMock = getAnyComponentMock('children');
 
