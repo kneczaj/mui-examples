@@ -1,36 +1,31 @@
-import { fireEvent, RenderResult } from '@testing-library/react';
-import { generate } from 'react-component-testing-library-client/lib/commands';
-import { ContainerWithDrawer, Props as ContainerWithDrawerProps } from './ContainerWithDrawer';
-import {DrawerHeader} from "common/drawer/components/DrawerHeader";
-import Divider from "@material-ui/core/Divider";
-import {Menu} from "common/drawer/components/Menu";
+import {fireEvent, RenderResult} from '@testing-library/react';
+import {generate} from 'react-component-testing-library-client/lib/commands';
+import {ContainerWithDrawer, Props as ContainerWithDrawerProps} from './ContainerWithDrawer';
 import {ToggleButton} from "common/drawer/components/ToggleButton";
-import Typography from "@material-ui/core/Typography";
-import React from "react";
 import {getAnyComponentMock} from "test/components";
+import {ContextProps, useDrawer} from "common/drawer/hooks/useDrawer";
+import {MOCKS} from "test";
 
 
 const ChildrenMock = getAnyComponentMock('children');
+function ContentMock() {
+  const {} = useDrawer();
+}
 
 interface Props extends Omit<ContainerWithDrawerProps, 'children'> {}
 
 function TestComponent(props: Props) {
-  <ContainerWithDrawer
-    anchor={'left'}
-    DrawerContent={() => (
-      <>
-        <DrawerHeader />
-        <Divider />
-        <Menu />
-      </>
-    )}
-    size={240}
-    className={classes.drawer}
-    ToggleButton={ToggleButton}
-    variant={'persistent'}
-  >
-    <ChildrenMock className={classes.main}/>
-  </ContainerWithDrawer>
+  return (
+    <ContainerWithDrawer
+      {...props}
+      anchor={'left'}
+      DrawerContent={ContentMock}
+      ToggleButton={ToggleButton}
+      variant={'persistent'}
+    >
+      <ChildrenMock/>
+    </ContainerWithDrawer>
+  );
 }
 
 const elements = (rendered: RenderResult) => ({
@@ -38,49 +33,28 @@ const elements = (rendered: RenderResult) => ({
   label: () => rendered.queryByText('A')
 });
 
-generate<Props, any, keyof ReturnType<typeof elements>>(
+type Hooks = {
+  useDrawer: ContextProps
+}
+
+generate<Props, Hooks, keyof ReturnType<typeof elements>>(
   __filename,
-  ContainerWithDrawer,
+  TestComponent,
   elements,
   data => {
     data.setBase({
       size: 200,
       className: 'test',
-      variant: undefined as any,
-      ToggleButton: undefined as any,
-      DrawerContent: undefined as any,
-      anchor: undefined as any,
-      initiallyOpened: false,
-      children: undefined as any,
-      DrawerProps: undefined as any
-    }, {}, 'permanent');
-
-    data.setBase({
-      size: 200,
-      className: 'test',
-      variant: undefined as any,
-      ToggleButton: undefined as any,
-      DrawerContent: undefined as any,
-      anchor: undefined as any,
-      initiallyOpened: false,
-      children: undefined as any,
-      DrawerProps: undefined as any
-    }, {}, 'temporary');
-
-    data.setBase({
-      size: 200,
-      className: 'test',
-      variant: undefined as any,
-      ToggleButton: undefined as any,
-      DrawerContent: undefined as any,
-      anchor: undefined as any,
-      initiallyOpened: false,
-      children: undefined as any,
-      DrawerProps: undefined as any
-    }, {}, 'persistent');
+      variant: 'persistent',
+      DrawerContent: ContentMock,
+      anchor: 'left',
+      initiallyOpened: false
+    }, {
+      useDrawer: MOCKS.HOOK_MOCKS.useDrawer
+    });
 
     data.setStateChanges((rendered, props, hooks, getElement) => ({
-      'after clicking the button': () => {
+      'after opening drawer': () => {
         fireEvent.click(getElement.button());
       }
     }));
@@ -90,7 +64,9 @@ generate<Props, any, keyof ReturnType<typeof elements>>(
     data.setHooksChanges({});
 
     data.setTests((it, rendered, props, hooks, expectResult, queryElement) => {
-      it('sample test', () => {});
+      it('is visible', () => {
+        expectResult(hooks.useDrawer.isVisible).toEqual(true);
+      });
     });
   }
 );

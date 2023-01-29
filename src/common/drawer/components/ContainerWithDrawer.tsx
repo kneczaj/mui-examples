@@ -1,4 +1,4 @@
-import {ComponentType, ReactNode} from 'react';
+import {ComponentType, ReactNode, useState} from 'react';
 import clsx from 'clsx';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 import MuiDrawer, {DrawerProps as MuiDrawerProps} from '@material-ui/core/Drawer';
@@ -78,7 +78,7 @@ const useStyles = makeStyles<DefaultTheme, StylesProps>((theme: Theme) =>
 
 export function ContainerWithDrawer({ anchor, children, className, DrawerContent, DrawerProps = {}, size, ToggleButton, variant, initiallyOpened = false }: Props) {
   const classes = useStyles({ anchor, size, variant });
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   // Mui Drawer does not smoothly cooperate with Toggle button in scope of synchronized animation
   const Drawer = variant === 'temporary' ? MuiDrawer : SimpleDrawer;
   const context: ContextProps = {

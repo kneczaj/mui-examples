@@ -12,14 +12,38 @@
   },
   "description": "https://github.com/mui-org/material-ui/blob/v4.x/docs/src/pages/components/drawers/PersistentDrawerLeft.tsx",
   "devDependencies": {
-    "react-scripts": "latest"
+    "@testing-library/react": "^13.4.0",
+    "react-scripts": "latest",
+    "ts-jest": "^29.0.5"
   },
   "main": "index.tsx",
   "scripts": {
     "start": "react-scripts start",
-    "test": "react-scripts test",
+    "test": "jest --watch",
     "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh",
-    "testgen:template": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template"
+    "testgen:template": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template",
+    "testgen:questionnaire": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "roots": [
+      "<rootDir>/src"
+    ],
+    "transform": {
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": ["ts-jest", {
+        "tsconfig": "./tsconfig.test.json"
+      }]
+    },
+    "modulePaths": [
+      "<rootDir>/src"
+    ],
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.ts"
+    ],
+    "setupFiles": [
+      "react-app-polyfill/jsdom"
+    ],
+    "testEnvironment": "jsdom"
   },
   "title": "Material demo",
   "browserslist": {
