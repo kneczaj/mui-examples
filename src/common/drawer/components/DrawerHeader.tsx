@@ -1,5 +1,5 @@
 import IconButton from "@material-ui/core/IconButton";
-import React, {ComponentType} from "react";
+import {ComponentType} from "react";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import {makeStyles} from "@material-ui/core";

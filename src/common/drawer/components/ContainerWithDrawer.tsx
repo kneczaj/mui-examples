@@ -1,4 +1,4 @@
-import React, {ComponentType, ReactNode} from 'react';
+import {ComponentType, ReactNode} from 'react';
 import clsx from 'clsx';
 import {makeStyles, Theme} from '@material-ui/core/styles';
 import MuiDrawer, {DrawerProps as MuiDrawerProps} from '@material-ui/core/Drawer';
