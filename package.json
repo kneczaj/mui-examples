@@ -17,6 +17,7 @@
   "main": "index.tsx",
   "scripts": {
     "start": "react-scripts start",
+    "test": "react-scripts test",
     "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh",
     "testgen:template": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template"
   },
