@@ -1,0 +1,14 @@
+{
+    "base": {
+        "results": {
+            "is visible": "answer"
+        },
+        "children": {
+            "after opening drawer": {
+                "results": {
+                    "is visible": "answer"
+                }
+            }
+        }
+    }
+}

@@ -6,13 +6,15 @@
     "@types/react-dom": "latest",
     "clsx": "latest",
     "react": "latest",
-    "react-component-testing-library-client": "file:/home/kamil/repos/mui-examples/scripts/../react-component-testing-library-client-1.2.5.tgz",
+    "react-component-testing-library-client": "file:/home/kamil/repos/mui-examples/scripts/../react-component-testing-library-client-1.2.7.tgz",
     "react-dom": "latest",
     "typescript": "latest"
   },
   "description": "https://github.com/mui-org/material-ui/blob/v4.x/docs/src/pages/components/drawers/PersistentDrawerLeft.tsx",
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
+    "@types/jest": "^29.4.0",
     "react-scripts": "latest",
     "ts-jest": "^29.0.5"
   },
@@ -22,7 +24,8 @@
     "test": "jest --watch",
     "testgen:install": "env $(cat testgen.local.env | sed -e '/#/d' | xargs) scripts/testgen-install.sh",
     "testgen:template": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template",
-    "testgen:questionnaire": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-template"
+    "testgen:questionnaire": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-questionnaire",
+    "testgen:generator": "env $(cat testgen.example.env testgen.local.env | sed -e '/#/d' | xargs) test-client-generator"
   },
   "jest": {
     "preset": "ts-jest",
@@ -30,9 +33,12 @@
       "<rootDir>/src"
     ],
     "transform": {
-      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": ["ts-jest", {
-        "tsconfig": "./tsconfig.test.json"
-      }]
+      "^.+\\.(js|jsx|mjs|cjs|ts|tsx)$": [
+        "ts-jest",
+        {
+          "tsconfig": "./tsconfig.test.json"
+        }
+      ]
     },
     "modulePaths": [
       "<rootDir>/src"

@@ -24,8 +24,8 @@ const useStyles = makeStyles<DefaultTheme>((theme) => ({
     // necessary for content to be below app bar
     ...theme.mixins.toolbar
   },
-  hidden: {
-    visibility: 'hidden'
+  button: {
+    marginLeft: 'auto'
   }
 }));
 
@@ -46,12 +46,14 @@ export function DrawerHeader({ className, title }: Props) {
   }
   return (
     <div className={clsx(classes.root, className)}>
-      <Typography variant={'h6'} className={clsx(!title && classes.hidden)}>
-        {title}
-      </Typography>
-      <IconButton onClick={hide} className={clsx(hideCloseButton && classes.hidden)}>
+      {title && (
+        <Typography variant={'h6'}>
+          {title}
+        </Typography>
+      )}
+      {!hideCloseButton && <IconButton aria-label={'close'} onClick={hide} className={classes.button}>
         <CloseIcon />
-      </IconButton>
+      </IconButton>}
     </div>
   )
 }

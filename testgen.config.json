@@ -4,7 +4,7 @@
     "ignoredHooks":  ["useStyles"]
   },
   "mocks": {
-    "mocksFile": "src/test/mocks.ts",
+    "mocksFile": "src/test/consts.ts",
     "hooksFile": "src/test/hooks.ts"
   }
 }

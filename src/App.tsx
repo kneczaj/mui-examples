@@ -28,7 +28,7 @@ export function App() {
         anchor={'left'}
         DrawerContent={() => (
           <>
-            <DrawerHeader />
+            <DrawerHeader title={'Header'} />
             <Divider />
             <Menu />
           </>

@@ -10,6 +10,7 @@ import {MOCKS} from "test";
 const ChildrenMock = getAnyComponentMock('children');
 function ContentMock() {
   const {} = useDrawer();
+  return <div/>
 }
 
 interface Props extends Omit<ContainerWithDrawerProps, 'children'> {}

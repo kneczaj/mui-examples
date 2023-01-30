@@ -1,0 +1,14 @@
+{
+    "when drawer is closed": {
+        "results": {
+            "shows open button": true,
+            "shows close button": null
+        }
+    },
+    "when drawer is opened": {
+        "results": {
+            "shows open button": null,
+            "shows close button": true
+        }
+    }
+}

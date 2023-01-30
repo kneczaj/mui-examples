@@ -1,0 +1,30 @@
+{
+    "base": {
+        "results": {
+            "shows close button": true,
+            "shows title": true
+        },
+        "children": {
+            "with permanent variant": {
+                "results": {
+                    "shows close button": false,
+                    "shows title": true
+                }
+            },
+            "with no title": {
+                "results": {
+                    "shows close button": true,
+                    "shows title": false
+                },
+                "children": {
+                    "with permanent variant": {
+                        "results": {
+                            "shows close button": false,
+                            "shows title": false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
